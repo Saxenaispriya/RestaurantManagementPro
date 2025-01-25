@@ -11,6 +11,8 @@ namespace RestaurantManagementPro
         static void Main(string[] args)
         {
             Restaurant restaurant = new Restaurant();
+            restaurant.initMenu();
+            restaurant.initTables();
             bool exit = true;
 
             while (exit)

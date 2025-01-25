@@ -11,5 +11,9 @@ namespace RestaurantManagementPro
         public table() { }
         public int tableNumber {  get; set; }
         public bool isTableOccupied { get; set; }= false;
+
+        list<Orders>; 
+
+
     }
 }

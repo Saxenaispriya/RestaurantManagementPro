@@ -7,31 +7,45 @@ namespace RestaurantManagementPro
     {
        public List<fooditem> fooditemlst = new List<fooditem>();
        public List<table> tablelist = new List<table>();
-       public List<order> orderlist = new List<order>();
 
 
-        public void addMenusItem()
+        public void initMenu()
         {
-            fooditemlst.Add(new fooditem() { foodItemId = 0, foodItemName = "No food", foodPrice = 0 });
-            fooditemlst.Add(new fooditem() { foodItemId = 1, foodItemName = "Dal Fry", foodPrice = 200 });
-            fooditemlst.Add(new fooditem() { foodItemId = 2, foodItemName = "Rice", foodPrice = 180 });
-            fooditemlst.Add(new fooditem() { foodItemId = 3, foodItemName = "Kadai Paneer", foodPrice = 300 });
-            fooditemlst.Add(new fooditem() { foodItemId = 4, foodItemName = "Virgin Mohito", foodPrice = 250 });
-            fooditemlst.Add(new fooditem() { foodItemId = 5, foodItemName = "Panner Tikka", foodPrice = 400 });
+            itemList = new List<string>{
+                "No food", "Dal Fry", "Rice", "Kadhai Panne"
+            }
+
+            foodPriceList = new List<int>{
+             100, 200, 400, 500
+            }
+
+            for (int i = ; i< itemlist.count(); i++){
+                fooditemlst.Add(new fooditem() { foodItemId = i, foodItemName = itemList[i], foodPrice = fooditemList[i] });
+
+            }
         }
 
-        public void addTableNumber()
+        public void initTables()
         {
-            tablelist.Add(new table() { tableNumber = 102, isTableOccupied = false });
-            tablelist.Add(new table() { tableNumber = 103, isTableOccupied = false });
-            tablelist.Add(new table() { tableNumber = 104, isTableOccupied = false });
-            tablelist.Add(new table() { tableNumber = 105, isTableOccupied = false });
-            tablelist.Add(new table() { tableNumber = 101, isTableOccupied = false });
-            tablelist.Add(new table() { tableNumber = 106, isTableOccupied = false });
-            tablelist.Add(new table() { tableNumber = 107, isTableOccupied = false });
-            tablelist.Add(new table() { tableNumber = 108, isTableOccupied = false });
-            tablelist.Add(new table() { tableNumber = 109, isTableOccupied = false });
+            for (int i = 0; i< 10; i++ ) {
+                tablelist.Add(new table() { tableNumber = i, isTableOccupied = false });
+            }
         }
+
+        public addTable(tableNumber int) {
+            tablelist.Add(new table (){ tableNumber: tableNumber, isTableOccupied = false })
+        }
+
+        public removeTable() {
+
+        }
+
+        public fooditem() {
+
+        }
+
+        public removeFooditem()
+
         public void showAvailableTables()
         {
             foreach (table t in tablelist)
@@ -54,37 +68,42 @@ namespace RestaurantManagementPro
             }
         }
 
-        public void Do_Orders(int tableno)
+        public void Do_Orders(int tableNumber)
         {
-            int total=0;
-            List<int> foodids = new List<int>();
-            order o = new order();
-            table tablebook = new table();
-            //for (int i = 0; i <tableno; i++)
-            //{
-            //    tablelist[i].isTableOccupied = true;
-            //}
-            Console.WriteLine("Select Menues items and type foodId for food");
-            showMenuesItem();
+            showMenuesItem()
+            bool orderComplete
+            while (orderComplete) {
+            "enter the item number"
+            itemNumber 
+            "enter the quntity"
+            quantity
 
-            //while (0 <o._fooditem.foodItemId)
-            //{
-            //    o._fooditem.foodItemId = Convert.ToInt32(Console.ReadLine());
-            //    foodids.Add(o._fooditem.foodItemId);
-            //}
-
-            //    foreach (int x in foodids)
-            //    {
-            //        foreach(fooditem f in fooditemlst)
-            //        {
-            //            if(f.foodItemId==x)
-            //            {
-            //                total=total+f.foodPrice;
-            //            }
-            //        }
-            //    }
-                Console.WriteLine("you need to pay"+": "+ total);
+            for (int i := 0; i< tablelist; i++) {
+                if tabllist[i].number == tableNumber {
+                    tablelist[i].orders.Add( new order(itemnumber, quntity))
+                }
+            }
+            'Do you want to add more items';
+            orderComplete = false
+            }
 
         }
+
+        public void generateBill(int tableNumber) {
+            int sum = 0
+            foreach(table t  in tablelist) {
+                T.Number == tableNumber {
+                    foreach(order or in t.orders) {
+                        foreach(fooditem fd in fooditemlist) {
+                            if fd.foodItemId == or.fooditemNumber { 
+                                sum += fd.foodPrice * or.quanity
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        
     }
 }

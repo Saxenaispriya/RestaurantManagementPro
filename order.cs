@@ -9,12 +9,14 @@ namespace RestaurantManagementPro
    
     internal class order
     {
-        Restaurant restaurant = new Restaurant();
         public order() { }
 
+         public order() { fooditemNumber, quanty} {
+            
+         }
+
         public int orderId {  get; set; }
-        public string orderName { get; set; }
-        public fooditem _fooditem { get; set; }
-        public table _table {  get; set; }
+        public int fooditemNumber { get; set; }
+        public int qunatiy; 
     }
 }
