@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RestaurantManagementPro
 {
@@ -14,13 +10,20 @@ namespace RestaurantManagementPro
             restaurant.initMenu();
             restaurant.initTables();
             bool exit = true;
+            Console.WriteLine("Table number is showing following");
+            restaurant.showAvailableTables();
+            Console.WriteLine();
 
             while (exit)
             {
                 Console.WriteLine("1. Do Order");
                 Console.WriteLine("2. show available Tables");
                 Console.WriteLine("3. show Menu Items");
-                Console.WriteLine("4. exit");
+                Console.WriteLine("4. Generate bill");
+                Console.WriteLine("5. Add table in the List");
+                Console.WriteLine("6. Remove table  from tablelist");
+                Console.WriteLine("7. Remove item from food menu");
+                Console.WriteLine("8. exit");
                
 
                 Console.WriteLine("Please press the key what you want");
@@ -31,7 +34,7 @@ namespace RestaurantManagementPro
                 switch (input)
                 {
                     case 1:
-                        Console.WriteLine("How many Table you want to book");
+                        Console.WriteLine("Enter Table number you want to book");
                         int tablecount=Convert.ToInt32(Console.ReadLine());
 
                         restaurant.Do_Orders(tablecount);
@@ -43,9 +46,22 @@ namespace RestaurantManagementPro
                         restaurant.showMenuesItem();
                         break;
                     case 4:
+                        restaurant.generateBill();
+                        break;
+                    case 5:
+                        restaurant.addTable();
+                        break;
+                    case 6:
+                        restaurant.removeTable();
+                        break;
+                    case 7:
+                        restaurant.removeFooditem();
+                        break;
+                    case 8:
                         exit = false;
                         break;
                 }
+                Console.WriteLine();
             }
             Console.ReadLine();
         }

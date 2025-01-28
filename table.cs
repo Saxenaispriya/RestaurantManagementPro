@@ -9,11 +9,14 @@ namespace RestaurantManagementPro
     internal class table
     {
         public table() { }
+        public table(int _tableNumber)
+        {
+            tableNumber = _tableNumber;
+            orderlist = new List<order>();
+        }
         public int tableNumber {  get; set; }
         public bool isTableOccupied { get; set; }= false;
 
-        list<Orders>; 
-
-
+       public List<order> orderlist=new List<order>();
     }
 }

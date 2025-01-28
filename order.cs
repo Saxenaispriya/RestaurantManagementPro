@@ -6,17 +6,19 @@ using System.Threading.Tasks;
 
 namespace RestaurantManagementPro
 {
-   
+
     internal class order
     {
         public order() { }
 
-         public order() { fooditemNumber, quanty} {
-            
-         }
+        public order(int fooditemNumber, int quanty)
+        {
+            this._fooditemNumber = fooditemNumber;
+            this._qunatiy = quanty;
+        }
 
-        public int orderId {  get; set; }
-        public int fooditemNumber { get; set; }
-        public int qunatiy; 
+        public int orderId { get; set; }
+        public int _fooditemNumber { get; set; }
+        public int _qunatiy { get; set; }
     }
 }

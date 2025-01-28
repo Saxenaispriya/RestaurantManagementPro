@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace RestaurantManagementPro
 {
@@ -11,40 +12,63 @@ namespace RestaurantManagementPro
 
         public void initMenu()
         {
-            itemList = new List<string>{
-                "No food", "Dal Fry", "Rice", "Kadhai Panne"
-            }
+           var itemList = new List<string>(){
+                "No food", "Dal Fry", "Rice", "Kadhai Panner"
+            };
 
-            foodPriceList = new List<int>{
-             100, 200, 400, 500
-            }
+           var foodPriceList = new List<int>(){
+             0,100, 200, 400
+            };
 
-            for (int i = ; i< itemlist.count(); i++){
-                fooditemlst.Add(new fooditem() { foodItemId = i, foodItemName = itemList[i], foodPrice = fooditemList[i] });
+            for (int i =0; i< itemList.Count; i++){
+                fooditemlst.Add(new fooditem() { foodItemId = i, foodItemName = itemList[i], foodPrice = foodPriceList[i] });
 
             }
         }
 
         public void initTables()
         {
-            for (int i = 0; i< 10; i++ ) {
+            for (int i = 1; i<= 10; i++ ) {
                 tablelist.Add(new table() { tableNumber = i, isTableOccupied = false });
             }
         }
 
-        public addTable(tableNumber int) {
-            tablelist.Add(new table (){ tableNumber: tableNumber, isTableOccupied = false })
+        public void addTable() {
+            Console.WriteLine("Add table number in the List");
+            int _tableNumber=Convert.ToInt32(Console.ReadLine());
+            tablelist.Add(new table()
+            { tableNumber= _tableNumber, isTableOccupied = false});
         }
 
-        public removeTable() {
+        public void removeTable() {
+            Console.WriteLine("which table number you want to delete");
+            int _tablenumber=Convert.ToInt32(Console.ReadLine());
+            int i = 0;
+            foreach (table t in tablelist.ToList())
+            {
+                if(t.tableNumber.Equals(_tablenumber) && t.isTableOccupied==false)
+                {
+                    tablelist.RemoveAt(i); 
+                }
+                i++;
+            }
 
         }
 
-        public fooditem() {
-
+        public void removeFooditem()
+        {
+            Console.WriteLine("which food item Id you want to delete");
+            int _fooditem=Convert.ToInt32(Console.ReadLine());
+            int i = 0;
+            foreach(fooditem f in fooditemlst.ToList())
+            {
+                if(f.foodItemId==_fooditem)
+                {
+                    fooditemlst.RemoveAt(i);
+                }
+                i++;
+            }
         }
-
-        public removeFooditem()
 
         public void showAvailableTables()
         {
@@ -52,8 +76,7 @@ namespace RestaurantManagementPro
             {
                 if (!t.isTableOccupied)
                 {
-                    Console.WriteLine(t.tableNumber);
-                    Console.WriteLine(t.isTableOccupied);
+                    Console.WriteLine(t.tableNumber + "\t");
                 }
             }
         }
@@ -61,49 +84,67 @@ namespace RestaurantManagementPro
         public void showMenuesItem()
         {
             foreach (fooditem f in fooditemlst)
-            {
-                Console.WriteLine(f.foodItemId);
-                Console.WriteLine(f.foodItemName);
-                Console.WriteLine(f.foodPrice);
+            { 
+                Console.Write("food Id:" +  f.foodItemId +"\t");
+                Console.Write("," +"food name: " + f.foodItemName +"\t");
+                Console.WriteLine("," + "food Price: " + f.foodPrice);
             }
         }
 
         public void Do_Orders(int tableNumber)
         {
-            showMenuesItem()
-            bool orderComplete
+            table t = new table();
+            showMenuesItem();
+            bool orderComplete=true;
             while (orderComplete) {
-            "enter the item number"
-            itemNumber 
-            "enter the quntity"
-            quantity
+                Console.WriteLine("enter the item number");
+                int itemNumber = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("enter the quntity");
+            int quantity=Convert.ToInt32(Console.ReadLine());
 
-            for (int i := 0; i< tablelist; i++) {
-                if tabllist[i].number == tableNumber {
-                    tablelist[i].orders.Add( new order(itemnumber, quntity))
+            for (int i = 0; i<tablelist.Count; i++) {
+                if (tablelist[i].tableNumber == tableNumber) {
+                        tablelist[i].orderlist.Add(new order(itemNumber, quantity));
+                        tablelist[i].isTableOccupied = true;
                 }
             }
-            'Do you want to add more items';
-            orderComplete = false
+               Console.WriteLine("Do you want to add more items; just type Y or N");
+               string  inp = Console.ReadLine();
+                if(inp.Equals("Y", StringComparison.OrdinalIgnoreCase))
+                {
+                    orderComplete = true;
+                }
+                else
+                {
+                    orderComplete = false;
+                }
             }
-
+            Console.WriteLine("You booked a table:" + tableNumber);
+            Console.WriteLine();
         }
 
-        public void generateBill(int tableNumber) {
-            int sum = 0
-            foreach(table t  in tablelist) {
-                T.Number == tableNumber {
-                    foreach(order or in t.orders) {
-                        foreach(fooditem fd in fooditemlist) {
-                            if fd.foodItemId == or.fooditemNumber { 
-                                sum += fd.foodPrice * or.quanity
+        public void generateBill()
+        {   
+            Console.WriteLine("Eneter the table number");
+            int tableNumber = Convert.ToInt32 (Console.ReadLine());
+            int sum = 0;
+            foreach (table t in tablelist)
+            {
+               if(t.tableNumber == tableNumber) {
+                    foreach (order or in t.orderlist)
+                    {
+                        foreach (fooditem fd in fooditemlst)
+                        {
+                            if (fd.foodItemId == or._fooditemNumber) {
+                                sum += fd.foodPrice * or._qunatiy;
                             }
                         }
                     }
                 }
             }
+            Console.WriteLine("you need to pay amount:" + sum);
         }
 
-        
+
     }
 }
